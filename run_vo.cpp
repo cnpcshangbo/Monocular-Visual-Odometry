@@ -14,6 +14,8 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/features2d/features2d.hpp>
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/opencv.hpp"
 
 // my
 #include "my_slam/common_include.h"
@@ -31,6 +33,9 @@
 #include "my_slam/display/pcl_display.h"
 
 using namespace my_slam;
+using namespace std;
+using namespace cv;
+
 
 // =========================================
 // =============== Functions ===============
@@ -216,7 +221,16 @@ bool drawResultByOpenCV(const cv::Mat &rgb_img, const vo::Frame::Ptr frame, cons
         cv::drawKeypoints(img_show, inliers_kpt, img_show, color_r);
     }
     is_vo_initialized_in_prev_frame = vo->isInitialized();
-    cv::imshow(IMAGE_WINDOW_NAME, img_show);
+    int scale_percent = 12;
+    // int ori_cols = img_show.cols;
+    // int ori_rows = img_show.rows;
+    int new_cols = img_show.cols * scale_percent / 100;
+    int new_rows = img_show.rows * scale_percent / 100;
+    cv::Mat resized_down;
+    resize(img_show, resized_down, Size(new_cols, new_rows), cv::INTER_LINEAR);
+
+    cv::imshow(IMAGE_WINDOW_NAME, resized_down);
+    // cv::imshow(IMAGE_WINDOW_NAME, img_show);
     cv::waitKey(cv_waitkey_time);
 
     // Save to file

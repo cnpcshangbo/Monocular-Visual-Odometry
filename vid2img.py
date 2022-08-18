@@ -12,16 +12,17 @@ out = cv2.VideoWriter('output.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, 
 count = 0
 while(True):
   ret, frame = cap.read()
-  scale_percent = 50 # percent of original size
-  width = int(img.shape[1] * scale_percent / 100)
-  height = int(img.shape[0] * scale_percent / 100)
-  dim = (width, height)
-  
-  # resize image
-  resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
-  k = cv2.waitKey(1)
-
   if ret == True: 
+    scale_percent = 50 # percent of original size
+    width = int(frame.shape[1] * scale_percent / 100)
+    height = int(frame.shape[0] * scale_percent / 100)
+    dim = (width, height)
+    
+    # resize image
+    resized = cv2.resize(frame, dim, interpolation = cv2.INTER_AREA)
+    k = cv2.waitKey(1)
+
+
     cv2.imshow('frame',resized)
 
     # press space key to start recording

@@ -57,7 +57,7 @@ void waitPclKeyPress(display::PclViewer::Ptr pcl_displayer);
 // =============== Settings ===============
 // ========================================
 
-const bool IS_DEBUGGING = false;
+const bool IS_DEBUGGING = true;
 
 // ========================================
 // ================= Main =================
@@ -80,9 +80,9 @@ int main(int argc, char **argv)
         image_paths;
     if (IS_DEBUGGING) // Read certain images specified below.
     {
-        string folder = "/home/feiyu/Documents/Projects/EECS432_CV_VO/data/test_data/";
+        string folder = "/usr/local/home/bsr8w/code/Monocular-Visual-Odometry/data/vid2img_small/";
         vector<string> tmp{
-            "image0001.jpg", "image0013.jpg", "image0015.jpg"};
+            "rgb_00001.jpg", "rgb_00013.jpg", "rgb_00015.jpg"};
         for (string &filename : tmp)
             filename = folder + filename;
         image_paths = tmp;
@@ -221,7 +221,7 @@ bool drawResultByOpenCV(const cv::Mat &rgb_img, const vo::Frame::Ptr frame, cons
         cv::drawKeypoints(img_show, inliers_kpt, img_show, color_r);
     }
     is_vo_initialized_in_prev_frame = vo->isInitialized();
-    int scale_percent = 12;
+    int scale_percent = 25;
     // int ori_cols = img_show.cols;
     // int ori_rows = img_show.rows;
     int new_cols = img_show.cols * scale_percent / 100;

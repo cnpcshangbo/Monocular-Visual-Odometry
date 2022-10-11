@@ -1,3 +1,6 @@
+# Python script author: Bo Shang
+# Python script function: 
+
 import cv2
 
 cap = cv2.VideoCapture('/usr/local/home/bsr8w/Downloads/P0440046.MP4')
@@ -26,7 +29,7 @@ while(True):
     cv2.imshow('frame',resized)
 
     # press space key to start recording
-    if True: #k%256 == 32:
+    if k%256 == 32:
         cv2.imwrite("rgb_%05d.jpg" % count, resized) 
         count += 1
         #cv2.imwrite()

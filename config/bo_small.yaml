@@ -11,7 +11,7 @@ dataset_name: "matlab"
 matlab: # New Tsukuba Stereo dataset used in matlab tutorial  
 
   # -- Data dir
-  dataset_dir: data/vid2img
+  dataset_dir: data/vid2img_small
   num_images: 700
 
   # -- Camera intrinsics (The images should all be undistorted)
